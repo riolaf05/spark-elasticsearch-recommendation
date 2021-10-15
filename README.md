@@ -38,8 +38,21 @@ There are several ways of computing similarity between vectors, such as euclidea
 
 the most similar a vector can be to the other is when the angle between them is 0º, where the cosine has a value of 1.
 
+For instance, user-movie (or movie-user) interaction matrix (where each entry records an interaction of a user i and a movie j), in a real world setting because the vast majority of movies receive very few or even no ratings at all by users, is an extremely sparse matrix:
 
-  
+![image](https://miro.medium.com/max/1050/1*rvCsSPh2EHj-B2HFwAgwmg.png)  
+
+With such a sparse matrix, what ML algorithms can be trained and reliable to make inference? To find solutions we use **Matrix factorization**.
+
+Matrix factorization is a factorization of a matrix into a product of matrices:
+
+![image](https://miro.medium.com/max/1050/1*xMxQL_V9CWeLggrk-Uyzmg.png)  
+
+ One matrix can be seen as the user matrix where rows represent users and columns are attributes or characteristics (latent factor). The other matrix is the item matrix where rows are attributes or characteristics and columns represent items.
+
+This allows model to predict better personalized movie ratings for users, e.g. less-known movies can have rich latent representations as much as popular movies.
+
+**TODO: [Alternating Least Square (ALS) with Spark ML](https://towardsdatascience.com/prototyping-a-recommender-system-step-by-step-part-2-alternating-least-square-als-matrix-4a76c58714a1)**
 ###  Setup
 
 Setup 3-node Spark cluster and single node Elasticsearch with:
@@ -55,4 +68,10 @@ Then run Jupyter notebook.
 
 * [Notebook](https://github.com/lijoabraham/spark-playground/blob/master/recommendation_system_spark_es/ES_Spark_Recommendation.ipynb)
 
+### Tutorials
+
 * [Understanding recommender systems](https://medium.com/codex/understanding-recommender-systems-1077f4215516)
+
+* [Prototyping a Recommender System Step by Step Part 1: KNN Item-Based Collaborative Filtering](https://towardsdatascience.com/prototyping-a-recommender-system-step-by-step-part-1-knn-item-based-collaborative-filtering-637969614ea)
+
+* [Prototyping a Recommender System Step by Step Part 2: Alternating Least Square (ALS) Matrix Factorization in Collaborative Filtering](https://towardsdatascience.com/prototyping-a-recommender-system-step-by-step-part-2-alternating-least-square-als-matrix-4a76c58714a1)
